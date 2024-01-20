@@ -16,3 +16,8 @@ class DitadorTest(unittest.TestCase):
         self.f.nasceu_menino()
         self.assertEqual(1, self.f.get_meninos())
         self.assertEqual(0, self.f.get_meninas())
+
+    def test_ao_nascer_menina_o_numero_de_meninas_deve_aumentar(self):
+        self.f.nasceu_menina()
+        self.assertEqual(0, self.f.get_meninos())
+        self.assertEqual(1, self.f.get_meninas())
