@@ -15,3 +15,6 @@ class Familia:
 
     def nasceu_menina(self):
         self.meninas += 1
+
+    def pode_ter_filhos(self):
+        return True

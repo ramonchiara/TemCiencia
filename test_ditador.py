@@ -21,3 +21,6 @@ class DitadorTest(unittest.TestCase):
         self.f.nasceu_menina()
         self.assertEqual(0, self.f.get_meninos())
         self.assertEqual(1, self.f.get_meninas())
+
+    def test_nova_familia_pode_ter_filhos(self):
+        self.assertEqual(True, self.f.pode_ter_filhos())
