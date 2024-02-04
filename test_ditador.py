@@ -1,4 +1,5 @@
 import unittest
+from unittest import mock
 
 from ditador import Familia
 
@@ -40,3 +41,17 @@ class DitadorTest(unittest.TestCase):
     def test_apos_nascer_menino_deve_lancar_excecao_se_nascer_uma_menina(self):
         self.f.nasceu_menino()
         self.assertRaises(AssertionError, self.f.nasceu_menina)
+
+    @mock.patch('random.randint')
+    def test_novo_nascimento_deve_ser_de_menino_se_sortear_0(self, mocked_randint):
+        mocked_randint.return_value = 0
+        self.f.novo_nascimento()
+        self.assertEqual(1, self.f.get_meninos())
+        self.assertEqual(0, self.f.get_meninas())
+
+    @mock.patch('random.randint')
+    def test_novo_nascimento_deve_ser_de_menina_se_sortear_1(self, mocked_randint):
+        mocked_randint.return_value = 1
+        self.f.novo_nascimento()
+        self.assertEqual(0, self.f.get_meninos())
+        self.assertEqual(1, self.f.get_meninas())

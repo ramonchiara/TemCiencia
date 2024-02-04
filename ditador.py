@@ -1,3 +1,6 @@
+import random
+
+
 class Familia:
 
     def __init__(self):
@@ -20,3 +23,10 @@ class Familia:
 
     def pode_ter_filhos(self):
         return self._meninos < 1
+
+    def novo_nascimento(self):
+        res = random.randint(0, 1)
+        if res == 0:
+            self.nasceu_menino()
+        else:
+            self.nasceu_menina()
