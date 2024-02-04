@@ -32,3 +32,11 @@ class DitadorTest(unittest.TestCase):
     def test_ao_nascer_menina_familia_continua_podendo_ter_mais_filhos(self):
         self.f.nasceu_menina()
         self.assertEqual(True, self.f.pode_ter_filhos())
+
+    def test_apos_nascer_menino_deve_lancar_excecao_se_nascer_outro_menino(self):
+        self.f.nasceu_menino()
+        self.assertRaises(AssertionError, self.f.nasceu_menino)
+
+    def test_apos_nascer_menino_deve_lancar_excecao_se_nascer_uma_menina(self):
+        self.f.nasceu_menino()
+        self.assertRaises(AssertionError, self.f.nasceu_menina)

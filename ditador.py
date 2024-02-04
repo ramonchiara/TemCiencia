@@ -11,9 +11,11 @@ class Familia:
         return self._meninas
 
     def nasceu_menino(self):
+        assert self.pode_ter_filhos()
         self._meninos += 1
 
     def nasceu_menina(self):
+        assert self.pode_ter_filhos()
         self._meninas += 1
 
     def pode_ter_filhos(self):
