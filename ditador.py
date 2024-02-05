@@ -34,3 +34,20 @@ class Familia:
     def simular(self):
         while self.pode_ter_filhos():
             self.novo_nascimento()
+
+
+if __name__ == '__main__':
+    N = 10000
+    sociedade = [Familia() for _ in range(0, N)]
+    for f in sociedade:
+        f.simular()
+
+    # questão 1
+    meninas = sum([f.get_meninas() for f in sociedade])
+    meninos = sum([f.get_meninos() for f in sociedade])
+    proporcao = meninas / meninos
+    print(f'Proporção entre meninas e meninos = {meninas}:{meninos} = {proporcao:.1f}')
+
+    # questão 2
+    media = (meninos + meninas) / N
+    print(f'Média de filhos por família = {media:.1f}')
