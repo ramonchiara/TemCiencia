@@ -55,3 +55,10 @@ class DitadorTest(unittest.TestCase):
         self.f.novo_nascimento()
         self.assertEqual(0, self.f.get_meninos())
         self.assertEqual(1, self.f.get_meninas())
+
+    @mock.patch('random.randint')
+    def test_ao_sortear_1_1_1_0_deve_ter_3_meninas_e_1_menino(self, mocked_randint):
+        mocked_randint.side_effect = [1, 1, 1, 0]
+        self.f.simular()
+        self.assertEqual(1, self.f.get_meninos())
+        self.assertEqual(3, self.f.get_meninas())

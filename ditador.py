@@ -30,3 +30,7 @@ class Familia:
             self.nasceu_menino()
         else:
             self.nasceu_menina()
+
+    def simular(self):
+        while self.pode_ter_filhos():
+            self.novo_nascimento()
