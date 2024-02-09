@@ -1,5 +1,8 @@
 import random
 
+import matplotlib.pyplot as plt
+import pandas as pd
+
 
 class Familia:
 
@@ -51,3 +54,27 @@ if __name__ == '__main__':
     # questão 2
     media = (meninos + meninas) / N
     print(f'Média de filhos por família = {media:.1f}')
+
+    # gráficos
+    df = pd.DataFrame({
+        'Familias': [i for i in range(1, N + 1)],
+        'Meninas': [f.get_meninas() for f in sociedade],
+        'Meninos': [f.get_meninos() for f in sociedade],
+    })
+    df['Filhos'] = df['Meninas'] + df['Meninos']
+    df['Filhos Acc'] = df['Filhos'].cumsum()
+    df['Média'] = df['Filhos Acc'] / df['Familias']
+
+    # Famílias x Meninos e Famílias x Meninas
+    df.plot(kind='scatter', x='Familias', y='Meninos').set_ylim(bottom=-1, top=df['Meninas'].max()+1)
+    df.plot(kind='scatter', x='Familias', y='Meninas').set_ylim(bottom=-1, top=df['Meninas'].max()+1)
+    plt.show()
+
+    # Histograma para a quantidade de meninas
+    df.plot(kind='hist', column='Meninas', bins=df['Meninas'].max())
+    plt.show()
+
+    # Famílias x Média de Filhos
+    df.plot(kind='line', x='Familias', y='Média')
+    plt.axhline(y=2, color='red', linestyle='dashed', label='Média esperada')
+    plt.show()
